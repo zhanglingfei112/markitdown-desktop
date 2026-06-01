@@ -1,5 +1,5 @@
 from PySide6.QtCore import QThread, Signal
-from markitdown_gui.utils.converter import MarkItDownConverter
+from markitdown_desktop.utils.converter import MarkItDownConverter
 
 class ConvertWorker(QThread):
     """

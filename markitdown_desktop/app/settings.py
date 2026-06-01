@@ -6,7 +6,7 @@ class Settings:
     """
     配置管理类，负责读取、保存和提供全局配置
     """
-    CONFIG_FILE = os.path.expanduser("~/.markitdown_gui_settings.json")
+    CONFIG_FILE = os.path.expanduser("~/.markitdown_desktop_settings.json")
 
     _data = {
         "language": "zh_CN",
@@ -66,7 +66,7 @@ class Settings:
         根据语言代码加载对应的翻译文件
         使用 pathlib 获取包路径，兼容开发环境和打包环境
         """
-        # 使用 pathlib 定位 i18n 目录 (settings.py → app/ → markitdown_gui/ → i18n/)
+        # 使用 pathlib 定位 i18n 目录 (settings.py → app/ → markitdown_desktop/ → i18n/)
         base_dir = Path(__file__).resolve().parent.parent / "i18n"
 
         def _load(path):

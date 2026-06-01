@@ -3,9 +3,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![PySide6](https://img.shields.io/badge/UI-PySide6-green.svg)](https://pypi.org/project/PySide6/)
-[![GitHub release](https://img.shields.io/github/v/release/zhanglingfei112/markitdown-gui)](https://github.com/zhanglingfei112/markitdown-gui/releases)
-[![GitHub stars](https://img.shields.io/github/stars/zhanglingfei112/markitdown-gui)](https://github.com/zhanglingfei112/markitdown-gui)
-[![CI](https://github.com/zhanglingfei112/markitdown-gui/actions/workflows/build.yml/badge.svg)](https://github.com/zhanglingfei112/markitdown-gui/actions/workflows/build.yml)
+[![GitHub release](https://img.shields.io/github/v/release/zhanglingfei112/markitdown-desktop)](https://github.com/zhanglingfei112/markitdown-desktop/releases)
+[![GitHub stars](https://img.shields.io/github/stars/zhanglingfei112/markitdown-desktop)](https://github.com/zhanglingfei112/markitdown-desktop)
+[![CI](https://github.com/zhanglingfei112/markitdown-desktop/actions/workflows/build.yml/badge.svg)](https://github.com/zhanglingfei112/markitdown-desktop/actions/workflows/build.yml)
 
 > 🇨🇳 中文 | [🇬🇧 English](./README.en.md)
 
@@ -33,8 +33,8 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/zhanglingfei112/markitdown-gui.git
-cd markitdown-gui
+git clone https://github.com/zhanglingfei112/markitdown-desktop.git
+cd markitdown-desktop
 
 # 使用 uv 安装依赖 (推荐)
 uv pip install .
@@ -47,7 +47,7 @@ pip install .
 
 ```bash
 # 启动应用
-python -m markitdown_gui.main
+python -m markitdown_desktop.main
 ```
 
 1. **导入文件** — 将文件拖入左侧面板，或通过 `文件 > 打开文件/文件夹`
@@ -70,8 +70,8 @@ python -m markitdown_gui.main
 ## 📁 项目结构
 
 ```
-markitdown-gui/
-├── markitdown_gui/
+markitdown-desktop/
+├── markitdown_desktop/
 │   ├── main.py               # 应用程序入口
 │   ├── app/
 │   │   ├── main_window.py    # 主窗口 UI 与逻辑
@@ -98,7 +98,7 @@ python -m unittest tests.test_converter -v
 
 ## 🤝 贡献指南
 
-欢迎贡献代码和提交 [Issue](https://github.com/zhanglingfei112/markitdown-gui/issues)！
+欢迎贡献代码和提交 [Issue](https://github.com/zhanglingfei112/markitdown-desktop/issues)！
 
 ## 📄 许可证
 

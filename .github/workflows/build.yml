@@ -43,13 +43,13 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         include:
           - os: ubuntu-latest
-            asset_name: markitdown-gui-linux-x86_64
+            asset_name: markitdown-desktop-linux-x86_64
             separator: ":"
           - os: windows-latest
-            asset_name: markitdown-gui-windows-x86_64.exe
+            asset_name: markitdown-desktop-windows-x86_64.exe
             separator: ";"
           - os: macos-latest
-            asset_name: markitdown-gui-macos-x86_64
+            asset_name: markitdown-desktop-macos-x86_64
             separator: ":"
 
     runs-on: ${{ matrix.os }}
@@ -77,41 +77,41 @@ jobs:
         run: |
           SEP="${{ matrix.separator }}"
           pyinstaller --noconfirm --onefile --windowed \
-            --name "markitdown-gui" \
-            --add-data "markitdown_gui/i18n/*.json"${SEP}"markitdown_gui/i18n" \
+            --name "markitdown-desktop" \
+            --add-data "markitdown_desktop/i18n/*.json"${SEP}"markitdown_desktop/i18n" \
             --add-data "resources/styles/style.qss"${SEP}"resources/styles" \
             --hidden-import PySide6.QtCore \
             --hidden-import PySide6.QtWidgets \
             --hidden-import PySide6.QtGui \
             --hidden-import markitdown \
-            --collect-all markitdown_gui \
-            markitdown_gui/main.py
+            --collect-all markitdown_desktop \
+            markitdown_desktop/main.py
 
       - name: Build executable (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           pyinstaller --noconfirm --onefile --windowed `
-            --name "markitdown-gui" `
-            --add-data "markitdown_gui/i18n/*.json;markitdown_gui/i18n" `
+            --name "markitdown-desktop" `
+            --add-data "markitdown_desktop/i18n/*.json;markitdown_desktop/i18n" `
             --add-data "resources/styles/style.qss;resources/styles" `
             --hidden-import PySide6.QtCore `
             --hidden-import PySide6.QtWidgets `
             --hidden-import PySide6.QtGui `
             --hidden-import markitdown `
-            --collect-all markitdown_gui `
-            markitdown_gui/main.py
+            --collect-all markitdown_desktop `
+            markitdown_desktop/main.py
 
       - name: Rename and prepare artifact (Unix)
         if: runner.os != 'Windows'
         run: |
           VERSION="${{ github.ref_name }}"
-          cp "dist/markitdown-gui" "dist/${{ matrix.asset_name }}"
+          cp "dist/markitdown-desktop" "dist/${{ matrix.asset_name }}"
           chmod +x "dist/${{ matrix.asset_name }}"
 
       - name: Rename and prepare artifact (Windows)
         if: runner.os == 'Windows'
-        run: copy "dist\markitdown-gui.exe" "dist\${{ matrix.asset_name }}"
+        run: copy "dist\markitdown-desktop.exe" "dist\${{ matrix.asset_name }}"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -140,9 +140,9 @@ jobs:
           name: MarkItDown GUI ${{ github.ref_name }}
           body_path: CHANGELOG.md
           files: |
-            artifacts/markitdown-gui-linux-x86_64/markitdown-gui-linux-x86_64
-            artifacts/markitdown-gui-windows-x86_64.exe/markitdown-gui-windows-x86_64.exe
-            artifacts/markitdown-gui-macos-x86_64/markitdown-gui-macos-x86_64
+            artifacts/markitdown-desktop-linux-x86_64/markitdown-desktop-linux-x86_64
+            artifacts/markitdown-desktop-windows-x86_64.exe/markitdown-desktop-windows-x86_64.exe
+            artifacts/markitdown-desktop-macos-x86_64/markitdown-desktop-macos-x86_64
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

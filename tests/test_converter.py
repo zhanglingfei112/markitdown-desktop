@@ -1,7 +1,7 @@
 import unittest
 import tempfile
 import os
-from markitdown_gui.utils.converter import MarkItDownConverter
+from markitdown_desktop.utils.converter import MarkItDownConverter
 
 class TestConverter(unittest.TestCase):
     """

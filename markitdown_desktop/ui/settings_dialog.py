@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import QDialog, QVBoxLayout, QFormLayout, QLineEdit, QCheckBox, QComboBox, QPushButton, QDialogButtonBox, QLabel
-from markitdown_gui.app.settings import Settings
+from markitdown_desktop.app.settings import Settings
 
 class SettingsDialog(QDialog):
     """

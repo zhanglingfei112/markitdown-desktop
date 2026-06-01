@@ -1,12 +1,12 @@
 import sys
 from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QMenuBar, QMenu, QStatusBar, QFileDialog, QMessageBox
-from markitdown_gui.ui.drop_area import DropArea
-from markitdown_gui.ui.file_list import FileList
-from markitdown_gui.ui.preview import PreviewArea
-from markitdown_gui.ui.settings_dialog import SettingsDialog
-from markitdown_gui.app.worker import ConvertWorker
-from markitdown_gui.app.settings import Settings
-from markitdown_gui import __version__
+from markitdown_desktop.ui.drop_area import DropArea
+from markitdown_desktop.ui.file_list import FileList
+from markitdown_desktop.ui.preview import PreviewArea
+from markitdown_desktop.ui.settings_dialog import SettingsDialog
+from markitdown_desktop.app.worker import ConvertWorker
+from markitdown_desktop.app.settings import Settings
+from markitdown_desktop import __version__
 from PySide6.QtWidgets import QPushButton
 
 class MainWindow(QMainWindow):

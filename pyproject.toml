@@ -1,5 +1,5 @@
 [project]
-name = "markitdown-gui"
+name = "markitdown-desktop"
 version = "0.1.0"
 description = "A desktop GUI wrapper for Microsoft MarkItDown - convert files to Markdown with drag-and-drop"
 readme = "README.md"
@@ -30,17 +30,17 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/zhanglingfei112/markitdown-gui"
-Repository = "https://github.com/zhanglingfei112/markitdown-gui"
-BugTracker = "https://github.com/zhanglingfei112/markitdown-gui/issues"
-Documentation = "https://github.com/zhanglingfei112/markitdown-gui#readme"
+Homepage = "https://github.com/zhanglingfei112/markitdown-desktop"
+Repository = "https://github.com/zhanglingfei112/markitdown-desktop"
+BugTracker = "https://github.com/zhanglingfei112/markitdown-desktop/issues"
+Documentation = "https://github.com/zhanglingfei112/markitdown-desktop#readme"
 
 [project.scripts]
-markitdown-gui = "markitdown_gui.main:main"
+markitdown-desktop = "markitdown_desktop.main:main"
 
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
-include = ["markitdown_gui*"]
+include = ["markitdown_desktop*"]
