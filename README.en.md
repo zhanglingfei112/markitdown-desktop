@@ -5,6 +5,7 @@
 [![PySide6](https://img.shields.io/badge/UI-PySide6-green.svg)](https://pypi.org/project/PySide6/)
 [![GitHub release](https://img.shields.io/github/v/release/zhanglingfei112/markitdown-gui)](https://github.com/zhanglingfei112/markitdown-gui/releases)
 [![GitHub stars](https://img.shields.io/github/stars/zhanglingfei112/markitdown-gui)](https://github.com/zhanglingfei112/markitdown-gui)
+[![CI](https://github.com/zhanglingfei112/markitdown-gui/actions/workflows/build.yml/badge.svg)](https://github.com/zhanglingfei112/markitdown-gui/actions/workflows/build.yml)
 
 > [🇨🇳 中文](./README.zh-CN.md) | 🇬🇧 English
 

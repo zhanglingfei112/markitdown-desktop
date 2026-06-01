@@ -35,6 +35,9 @@ Repository = "https://github.com/zhanglingfei112/markitdown-gui"
 BugTracker = "https://github.com/zhanglingfei112/markitdown-gui/issues"
 Documentation = "https://github.com/zhanglingfei112/markitdown-gui#readme"
 
+[project.scripts]
+markitdown-gui = "markitdown_gui.main:main"
+
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
