@@ -49,7 +49,7 @@ jobs:
             asset_name: markitdown-desktop-windows-x86_64.exe
             separator: ";"
           - os: macos-latest
-            asset_name: markitdown-desktop-macos-x86_64
+            asset_name: markitdown-desktop-macos-x86_64.dmg
             separator: ":"
 
     runs-on: ${{ matrix.os }}
@@ -72,19 +72,34 @@ jobs:
           python -m pip install --upgrade pip
           pip install PySide6 markitdown[all] pyinstaller
 
-      - name: Build executable (Unix)
-        if: runner.os != 'Windows'
+      - name: Build executable (Linux)
+        if: runner.os == 'Linux'
         run: |
           SEP="${{ matrix.separator }}"
           pyinstaller --noconfirm --onefile --windowed \
             --name "markitdown-desktop" \
-            --add-data "markitdown_desktop/i18n/*.json"${SEP}"markitdown_desktop/i18n" \
-            --add-data "resources/styles/style.qss"${SEP}"resources/styles" \
+            --add-data "markitdown_desktop/i18n/*.json${SEP}markitdown_desktop/i18n" \
+            --add-data "resources/styles/style.qss${SEP}resources/styles" \
             --hidden-import PySide6.QtCore \
             --hidden-import PySide6.QtWidgets \
             --hidden-import PySide6.QtGui \
             --hidden-import markitdown \
             --collect-all markitdown_desktop \
+            markitdown_desktop/main.py
+
+      - name: Build executable (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          pyinstaller --noconfirm --onedir --windowed \
+            --name "markitdown-desktop" \
+            --add-data "markitdown_desktop/i18n/*.json:markitdown_desktop/i18n" \
+            --add-data "resources/styles/style.qss:resources/styles" \
+            --hidden-import PySide6.QtCore \
+            --hidden-import PySide6.QtWidgets \
+            --hidden-import PySide6.QtGui \
+            --hidden-import markitdown \
+            --collect-all markitdown_desktop \
+            --osx-bundle-identifier com.markitdown.desktop \
             markitdown_desktop/main.py
 
       - name: Build executable (Windows)
@@ -102,8 +117,25 @@ jobs:
             --collect-all markitdown_desktop `
             markitdown_desktop/main.py
 
-      - name: Rename and prepare artifact (Unix)
-        if: runner.os != 'Windows'
+      - name: Build DMG (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          APP_NAME="markitdown-desktop"
+          DMG_NAME="${{ matrix.asset_name }}"
+          # Create a temporary directory for DMG contents
+          mkdir -p "dist/dmg"
+          # Copy the .app bundle
+          cp -R "dist/${APP_NAME}.app" "dist/dmg/"
+          # Create DMG using native hdiutil
+          hdiutil create -volname "MarkItDown Desktop" \
+            -srcfolder "dist/dmg" \
+            -ov -format UDZO \
+            "dist/${DMG_NAME}"
+          # Clean up
+          rm -rf "dist/dmg"
+
+      - name: Rename and prepare artifact (Linux)
+        if: runner.os == 'Linux'
         run: |
           VERSION="${{ github.ref_name }}"
           cp "dist/markitdown-desktop" "dist/${{ matrix.asset_name }}"
@@ -137,12 +169,12 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: MarkItDown GUI ${{ github.ref_name }}
+          name: MarkItDown Desktop ${{ github.ref_name }}
           body_path: CHANGELOG.md
           files: |
             artifacts/markitdown-desktop-linux-x86_64/markitdown-desktop-linux-x86_64
             artifacts/markitdown-desktop-windows-x86_64.exe/markitdown-desktop-windows-x86_64.exe
-            artifacts/markitdown-desktop-macos-x86_64/markitdown-desktop-macos-x86_64
+            artifacts/markitdown-desktop-macos-x86_64.dmg/markitdown-desktop-macos-x86_64.dmg
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
